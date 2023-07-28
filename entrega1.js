@@ -1,3 +1,8 @@
+
+/// ******************************************** FUNCIONES ******************************************** ///
+
+let respuesta, pago, repitaLaOperacion;
+
 const MetodoDePago = (x) => {
     
     switch(pago){
@@ -15,41 +20,92 @@ const MetodoDePago = (x) => {
     }
 }
 
-const datosPersonales = () => {
-    alert(`A continuacion le solicitaremos una serie de datos:`);
-    dato0 = prompt(`Ingrese su nombre completo`)
-    dato1 = prompt(`Ingrese su correo electronico`);
-    dato2 = parseInt(prompt(`Ingrese su numero de celular`));
-    dato3 = prompt(`Ingrese su calle y altura a la que quiere recibir el producto`);
-    dato4 = prompt(`Ingrese la localidad`);
-    dato5 = parseInt(prompt(`Codigo postal`));
-    
-    return `¡¡¡ Muchas gracias por su Compra !!! 
-    
-    Nombre Completo: ${dato0}
-    Correo electronico: ${dato1}
-    Telefono: ${dato2}
-    Domicilio y Altura: ${dato3}
-    Localidad: ${dato4} Codigo Postal: ${dato5}`
-}
-
 const productoComprado = (a) => {
     return `El envio de su ${a} se realizara en los proximos 7 dias aviles.`
 }
 
+/// ******************************************** DATOS PERSONALES ******************************************** ///
+
+
+class Personales {
+    constructor(nombre, correo, celular, direccion, localidad, cp){
+        this.nombre = nombre;
+        this.correo = correo;
+        this.celular = celular;
+        this.direccion = direccion;
+        this.localidad = localidad;
+        this.cp = cp;
+    }
+}
+
+const pedirDatosPersonales = () => {
+    alert(`A continuacion le solicitaremos una serie de datos:`);
+    const nombre = prompt(`Ingrese su nombre completo`);
+    const correo = prompt(`Ingrese su Correo Electronico`);
+    const celular = parseInt(prompt(`Ingrese su numero de telefono`));
+    const direccion = prompt(`Ingrese su dirección`);
+    const localidad = prompt(`Ingrese su localidad`);
+    const cp = parseInt(prompt(`Ingrese su codigo postal`));
+
+    alert(`¡¡¡ Muchas gracias por su Compra !!! 
+    
+    Nombre Completo: ${nombre}
+    Correo electronico: ${correo}
+    Telefono: ${celular}
+    Domicilio y Altura: ${direccion}
+    Localidad: ${localidad} Codigo Postal: ${cp}`)
+}
+
+/// ******************************************** DATOS TARJETA ******************************************** ///
+
+class Tarjeta {
+    constructor(numero16, vencimiento1, vencimiento2, codigo) {
+        this.frente = numero16;
+        this.mes = vencimiento1;
+        this.año = vencimiento2;
+        this.codigo = codigo;
+    }
+}
+
+const obtenerDatosTarjeta = () => {
+    
+    const numero16 = parseInt(prompt("Ingrese los 16 digitos del frente de la tarjeta:"));
+    const vencimiento1 = parseInt(prompt("Ingrese el mes de vencimiento de la tarjeta"));
+    const vencimiento2 = parseInt(prompt("Ingrese el año de vencimiento de la tarjeta"));
+    const codigo = parseInt(prompt("Ingrese el codigo de vencimiento de la tarjeta"));
+    
+    const datosTarjeta = new Tarjeta( numero16, vencimiento1, vencimiento2, codigo);
+    
+    console.log(datosTarjeta);
+}
+
+/// ******************************************** ARRAYS CAJA SORPRESA ******************************************** ///
+
+const Carrito = [];
+let i = 1;
+
+
+
+/// ___________________________________________________ COMIENZA LA EJECUCION DEL CODIGO ___________________________________________________ ///
+
+
+
+
+
+
 
 alert(`Bienvenido a Word Of Warcraft Merchandising`);
-let producto = prompt(`¿Que producto desea comprar? \n 1) Remeras\n 2) Tazas\n 3) Banners \n (Seleccione un número)`);
-let respuesta, pago, repitaLaOperacion, dato1, dato2, dato3, dato4, dato5, dato0;
+let producto = prompt(`¿Que producto desea comprar? \n 1) Remeras\n 2) Tazas\n 3) Banners \n 4) Caja Sorpresa \n (Seleccione un número)`);
 
-while ((respuesta !== "no") && (respuesta !== "NO") && (respuesta !== "No")){
+while ((respuesta !== "no")){
         
     if (producto == "1"){
         
         alert(`Cada remera esta $ 5.000`);
         pago = parseInt(prompt(`Seleccione el metodo de pago que desea elegir: \n 1) Credito. \n 2) Debito. \n 3) Efectivo. \n (Seleccione un número)`));
         alert(`El costo de la Remera es de $ ` + MetodoDePago(5000));
-        alert(datosPersonales());
+        obtenerDatosTarjeta();
+        pedirDatosPersonales();
         alert(productoComprado("remera"));
 
     } else if (producto == "2"){
@@ -57,7 +113,8 @@ while ((respuesta !== "no") && (respuesta !== "NO") && (respuesta !== "No")){
         alert(`Cada Taza esta $ 1.000`);
         pago = parseInt(prompt(`Seleccione el metodo de pago que desea elegir: \n 1) Credito. \n 2) Debito. \n 3) Efectivo. \n (Seleccione un número)`));
         alert(`El costo de la Taza es de $ ` + MetodoDePago(1000));
-        alert(datosPersonales());
+        obtenerDatosTarjeta();
+        pedirDatosPersonales();
         alert(productoComprado("taza"));
 
 
@@ -66,24 +123,48 @@ while ((respuesta !== "no") && (respuesta !== "NO") && (respuesta !== "No")){
         alert(`Cada Banner esta $ 7.000`);
         pago = parseInt(prompt(`Seleccione el metodo de pago que desea elegir: \n 1) Credito. \n 2) Debito. \n 3) Efectivo. \n (Seleccione un número)`));
         alert(`El costo del Banner es de $ ` + MetodoDePago(7000));
-        alert(datosPersonales());
+        obtenerDatosTarjeta();
+        pedirDatosPersonales();
         alert(productoComprado("banner"));
 
 
-    } else {
+    } else if (producto == "4") {
+
+        while ( i < 4 ) {
+            
+            
+            let entrada = prompt((`Ingrese los articulos que desea agregar a la Caja Sorpresa: \n(Escriba los nombres de los articulos, el maximo es 3 articulos.) \n1) Skins. \n2) Pets. \n3) Expansion Wow Shadowlands. \n4) Membresia. (de 1 año) \n5) Monturas. \n6) Cosmeticos.`).toLowerCase());
+            
+            if ( ((entrada) !== ("skins")) && ((entrada) !== ("mebresia")) && ((entrada) !== ("monturas")) 
+            && ((entrada) !== ("cosmeticos")) && ((entrada) !== ("expansion")) && ((entrada) !== ("pets"))){
+                while (){
+                    alert("no se reconoce el elemento, vuelva a intentar");
+                    entrada = prompt((`Ingrese los articulos que desea agregar a la Caja Sorpresa: \n(Escriba los nombres de los articulos, el maximo es 3 articulos.) \n1) Skins. \n2) Pets. \n3) Expansion Wow Shadowlands. \n4) Membresia. (de 1 año) \n5) Monturas. \n6) Cosmeticos.`).toLowerCase());
+                }
+            } else {
+                console.log(`${i}) Compra realizada`)
+            }
+            
+            Carrito.push(entrada.toLowerCase());
+            i++
+        }
+        console.log(Carrito);
+ 
+    }
+    else {
         alert(`No se reconoce el producto, vuelva a probrar`);  
     }
     
-    respuesta = prompt("¿Desea realizar otra operacion? Si / No");
+    respuesta = prompt("¿Desea realizar otra operacion? Si / No").toLowerCase();
     
-    if (respuesta == "no" || respuesta == "No" || respuesta =="NO"){
+    if (respuesta == "no"){
         alert(`Hasta pronto !!`)
         break;
-    } else if (respuesta=="si" || respuesta=="SI" || respuesta=="Si") {
+    } else if (respuesta=="si") {
         producto = prompt(`¿Que producto desea comprar? \n 1) Remeras\n 2) Tazas\n 3) Banners \n (Seleccione un número)`);
     } else {
-        repitaLaOperacion = prompt("No se reconoce respuesta. ¿Quiere seguir? Si / No")
-        if (repitaLaOperacion=="si" || repitaLaOperacion=="SI" || repitaLaOperacion=="Si") {
+        repitaLaOperacion = prompt("No se reconoce respuesta. ¿Quiere seguir? Si / No").toLowerCase();
+        if (repitaLaOperacion == "si") {
             producto = prompt(`¿Que producto desea comprar? \n 1) Remeras\n 2) Tazas\n 3) Banners \n (Seleccione un número)`);
         } else {
             alert("Gracias por venir Vuelva pronto")
