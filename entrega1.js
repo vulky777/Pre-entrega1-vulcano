@@ -24,6 +24,12 @@ const productoComprado = (a) => {
     return `El envio de su ${a} se realizara en los proximos 7 dias aviles.`
 }
 
+const entrada = () => {
+    prompt((`Ingrese los articulos que desea agregar a la Caja Sorpresa: \n(Escriba los nombres de los articulos, el maximo es 3 articulos.) \n1) Skins. \n2) Pets. \n3) Expansion Wow Shadowlands. \n4) Membresia. (de 1 año) \n5) Monturas. \n6) Cosmeticos.`).toLowerCase());
+}
+
+let valorAsignado = entrada;
+
 /// ******************************************** DATOS PERSONALES ******************************************** ///
 
 
@@ -82,8 +88,9 @@ const obtenerDatosTarjeta = () => {
 /// ******************************************** ARRAYS CAJA SORPRESA ******************************************** ///
 
 const Carrito = [];
+const CarritoDisponible = ["cosmeticos", "monturas", "membresia", "expansion", "pets", "skins"];
 let i = 1;
-
+let condicion;
 
 
 /// ___________________________________________________ COMIENZA LA EJECUCION DEL CODIGO ___________________________________________________ ///
@@ -132,19 +139,22 @@ while ((respuesta !== "no")){
 
         while ( i < 4 ) {
             
-            
             let entrada = prompt((`Ingrese los articulos que desea agregar a la Caja Sorpresa: \n(Escriba los nombres de los articulos, el maximo es 3 articulos.) \n1) Skins. \n2) Pets. \n3) Expansion Wow Shadowlands. \n4) Membresia. (de 1 año) \n5) Monturas. \n6) Cosmeticos.`).toLowerCase());
-            
+
             if ( ((entrada) !== ("skins")) && ((entrada) !== ("mebresia")) && ((entrada) !== ("monturas")) 
             && ((entrada) !== ("cosmeticos")) && ((entrada) !== ("expansion")) && ((entrada) !== ("pets"))){
-                while (){
+                while ( condicion !== true ){
+                    
                     alert("no se reconoce el elemento, vuelva a intentar");
+                    
                     entrada = prompt((`Ingrese los articulos que desea agregar a la Caja Sorpresa: \n(Escriba los nombres de los articulos, el maximo es 3 articulos.) \n1) Skins. \n2) Pets. \n3) Expansion Wow Shadowlands. \n4) Membresia. (de 1 año) \n5) Monturas. \n6) Cosmeticos.`).toLowerCase());
+                    
+                    condicion = CarritoDisponible.includes(entrada); 
+                    
                 }
-            } else {
-                console.log(`${i}) Compra realizada`)
-            }
-            
+            } 
+                
+            console.log(`${i}) Compra realizada`)
             Carrito.push(entrada.toLowerCase());
             i++
         }
