@@ -194,7 +194,7 @@ console.log(datosTarjeta);
 
 
 
-
+/*
 class Tarjeta {
     constructor(numero16, vencimiento1, vencimiento2, codigo) {
       this.frente = numero16;
@@ -217,4 +217,28 @@ const obtenerDatos = () => {
 }
 
 obtenerDatos();
-    
+*/
+/*
+const entrada = () => {
+  return prompt((`Ingrese los articulos que desea agregar a la Caja Sorpresa: \n(Escriba los nombres de los articulos, el maximo es 3 articulos.) \n1) Skins. \n2) Pets. \n3) Expansion Wow Shadowlands. \n4) Membresia. (de 1 año) \n5) Monturas. \n6) Cosmeticos.`).toLowerCase());
+}
+
+let valor = entrada();
+
+console.log(valor);
+*/
+
+const nombres = ['Rita', 'Pedro', 'Miguel', 'Ana', 'Vanesa']
+
+// recibo el elemento a borrar por parámetro
+const eliminar = (nombre) => {
+    // busco su índice en el array
+    let index = nombres.indexOf(nombre)
+
+     // si existe, o sea es distinto a -1, lo borro con splice
+    if (index != -1 ) {
+        nombres.splice(index, 1)
+    } 
+}
+eliminar('Rita')
+console.log(nombres)

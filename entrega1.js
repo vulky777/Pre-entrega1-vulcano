@@ -25,10 +25,10 @@ const productoComprado = (a) => {
 }
 
 const entrada = () => {
-    prompt((`Ingrese los articulos que desea agregar a la Caja Sorpresa: \n(Escriba los nombres de los articulos, el maximo es 3 articulos.) \n1) Skins. \n2) Pets. \n3) Expansion Wow Shadowlands. \n4) Membresia. (de 1 año) \n5) Monturas. \n6) Cosmeticos.`).toLowerCase());
+    return prompt((`Ingrese los articulos que desea agregar a la Caja Sorpresa: \n(Escriba los nombres de los articulos, el maximo es 3 articulos.) \n1) Skins. \n2) Pets. \n3) Expansion Wow Shadowlands. \n4) Membresia. (de 1 año) \n5) Monturas. \n6) Cosmeticos.`).toLowerCase());
+
 }
 
-let valorAsignado = entrada;
 
 /// ******************************************** DATOS PERSONALES ******************************************** ///
 
@@ -91,14 +91,9 @@ const Carrito = [];
 const CarritoDisponible = ["cosmeticos", "monturas", "membresia", "expansion", "pets", "skins"];
 let i = 1;
 let condicion;
-
+let condicion2;
 
 /// ___________________________________________________ COMIENZA LA EJECUCION DEL CODIGO ___________________________________________________ ///
-
-
-
-
-
 
 
 alert(`Bienvenido a Word Of Warcraft Merchandising`);
@@ -139,26 +134,48 @@ while ((respuesta !== "no")){
 
         while ( i < 4 ) {
             
-            let entrada = prompt((`Ingrese los articulos que desea agregar a la Caja Sorpresa: \n(Escriba los nombres de los articulos, el maximo es 3 articulos.) \n1) Skins. \n2) Pets. \n3) Expansion Wow Shadowlands. \n4) Membresia. (de 1 año) \n5) Monturas. \n6) Cosmeticos.`).toLowerCase());
+            let prueba = entrada();
+            condicion = CarritoDisponible.includes(prueba);
+            console.log(condicion);
+            
+            
+            if (condicion !== true) {
+                while ( condicion !== true){
+                    alert("no se reconoce el elemento, vuelva a intentar");
+                    entrada();
+                    
+                    
+                }
+            }   
+            
 
+
+            
+            // let entrada = prompt((`Ingrese los articulos que desea agregar a la Caja Sorpresa: \n(Escriba los nombres de los articulos, el maximo es 3 articulos.) \n1) Skins. \n2) Pets. \n3) Expansion Wow Shadowlands. \n4) Membresia. (de 1 año) \n5) Monturas. \n6) Cosmeticos.`).toLowerCase());
+            
+            /*
             if ( ((entrada) !== ("skins")) && ((entrada) !== ("mebresia")) && ((entrada) !== ("monturas")) 
             && ((entrada) !== ("cosmeticos")) && ((entrada) !== ("expansion")) && ((entrada) !== ("pets"))){
                 while ( condicion !== true ){
                     
                     alert("no se reconoce el elemento, vuelva a intentar");
-                    
                     entrada = prompt((`Ingrese los articulos que desea agregar a la Caja Sorpresa: \n(Escriba los nombres de los articulos, el maximo es 3 articulos.) \n1) Skins. \n2) Pets. \n3) Expansion Wow Shadowlands. \n4) Membresia. (de 1 año) \n5) Monturas. \n6) Cosmeticos.`).toLowerCase());
-                    
                     condicion = CarritoDisponible.includes(entrada); 
                     
                 }
             } 
+            */
                 
             console.log(`${i}) Compra realizada`)
-            Carrito.push(entrada.toLowerCase());
+            Carrito.push(prueba/*.toLowerCase()*/);
             i++
         }
         console.log(Carrito);
+        let borrarCarrito = prompt(`Su Caja Sorpresa de compras cuenta con: ${Carrito}.\n¿Desea Eleminiar algun articulo del carrito?`).toLowerCase();
+
+        if (borrarCarrito == "si") {
+            alert(`borrame`)
+        } 
  
     }
     else {
@@ -171,11 +188,11 @@ while ((respuesta !== "no")){
         alert(`Hasta pronto !!`)
         break;
     } else if (respuesta=="si") {
-        producto = prompt(`¿Que producto desea comprar? \n 1) Remeras\n 2) Tazas\n 3) Banners \n (Seleccione un número)`);
+        producto = prompt(`¿Que producto desea comprar? \n 1) Remeras\n 2) Tazas\n 3) Banners \n 4) Caja Sorpresa \n (Seleccione un número)`);
     } else {
         repitaLaOperacion = prompt("No se reconoce respuesta. ¿Quiere seguir? Si / No").toLowerCase();
         if (repitaLaOperacion == "si") {
-            producto = prompt(`¿Que producto desea comprar? \n 1) Remeras\n 2) Tazas\n 3) Banners \n (Seleccione un número)`);
+            producto = prompt(`¿Que producto desea comprar? \n 1) Remeras\n 2) Tazas\n 3) Banners \n 4) Caja Sorpresa \n (Seleccione un número)`);
         } else {
             alert("Gracias por venir Vuelva pronto")
             break;
